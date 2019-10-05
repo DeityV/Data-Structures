@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F17DEDA22348C042009BB395 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = F17DEDA12348C042009BB395 /* main.c */; };
+		F17DEDA22348C042009BB395 /* list_hw.c in Sources */ = {isa = PBXBuildFile; fileRef = F17DEDA12348C042009BB395 /* list_hw.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +24,8 @@
 
 /* Begin PBXFileReference section */
 		F17DED9E2348C042009BB395 /* HW3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HW3; sourceTree = BUILT_PRODUCTS_DIR; };
-		F17DEDA12348C042009BB395 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		F17DEDA12348C042009BB395 /* list_hw.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = list_hw.c; sourceTree = "<group>"; };
+		F17DEDA82348CBEC009BB395 /* list_hw.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = list_hw.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +58,8 @@
 		F17DEDA02348C042009BB395 /* HW3 */ = {
 			isa = PBXGroup;
 			children = (
-				F17DEDA12348C042009BB395 /* main.c */,
+				F17DEDA12348C042009BB395 /* list_hw.c */,
+				F17DEDA82348CBEC009BB395 /* list_hw.h */,
 			);
 			path = HW3;
 			sourceTree = "<group>";
@@ -118,7 +120,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F17DEDA22348C042009BB395 /* main.c in Sources */,
+				F17DEDA22348C042009BB395 /* list_hw.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
