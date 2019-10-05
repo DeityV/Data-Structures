@@ -135,10 +135,7 @@ void swap_first_third(struct node * A) {
     return;
 }
 
-void delete_occurrences(struct node * A, int V) {
-    
-    return;
-}
+
 /*
 // Tests the sublist function.
 int student_test_sublist() {
@@ -156,27 +153,35 @@ void printList(struct node* n)
 }
 
 int main(int argc, const char * argv[]) {
+    struct node* dummy = NULL;
+    struct node* before = NULL;
     struct node* head = NULL;
     struct node* second = NULL;
     struct node* third = NULL;
+    struct node* fourth = NULL;
     
+    
+    dummy = new_list();
+    //before = new_node(9, NULL);
+    head = new_node(1, NULL);
+    second = new_node(2, NULL);
     third = new_node(3, NULL);
-    second = new_node(2,third);
-    head = new_node(1, second);
+    fourth = new_node(4, NULL);
+    
+   
+    insert_node(dummy, head);
+    //insert_node(head, before);
+    insert_node(head, second);
+    insert_node(second, third);
+    insert_node(third, fourth);
     
     
     
-    printf("Vertical");
-    print_list_vert(head);
+    printf("__Vertical Print__:\n");
+    print_list_vert(dummy);
     
-    printf("Horizontal");
-    print_list_horiz(head);
+  
     
-    printf("Pointer");
-    print_list_pointer(head);
-    
-    printf("printlist");
-    printList(head);
     
     return 0;
 }
