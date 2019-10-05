@@ -127,7 +127,61 @@ void print_list_pointer(struct node * my_list) {
  BUT YOU CAN ALSO CALL THEM AND USE THEM IN YOUR student_test_sublist function.
  */
 
+/*
+ This function returns a list that contains the values that appear in list A at positions given in pos_list
+ Requirement 1: the values should appear in the result in the order given by pos_list. For example if
+ A: 15 -> 100 -> 7 -> 5 -> 100 -> 7 -> 30 and
+ pos_list : 3 -> 0 -> 6 -> 4
+ The resulting list will be A[3] -> A[0] -> A[6] -> A[4] , which gives values: 5 -> 15 -> 30 -> 100.
+ Requirement 2: the result should be a deep copy, so that any future changes in list A cannot possibly affect the result, and any future changes in the result cannot possibly affect list A. (List A should remain as it was after building the sublist.)
+ Requirement 3: DO not copy the nodes in an array and then build a list from an array. When found the node in A, make a new node with the same value and insert it in the result list.
+ Requirement 4: DO not make a copy of a list and change the data there. Build the result list by starting with an empty list and then creating new nodes and inserting them at the end of it.
+ The list pos_list CAN have repetitions. E.g.:
+ list A: 10 -> 5
+ pos_list: 0->0->1->-0->1->1->0.
+ produces list: 10->10->5->10->5->5->10
+ (This example also shows that the size of A is unrelated to the size of pos_list.)*/
 struct node * sublist(struct node * A, struct node * pos_list) {
+    int i = 0;
+    struct node * curr;
+    struct node * future;
+    
+    struct node* sub_dummy = NULL;
+    struct node* sub_head = NULL;
+    struct node* sub_second = NULL;
+    struct node* sub_third = NULL;
+    struct node* sub_fourth = NULL;
+    
+    sub_dummy = new_list();
+    
+    
+    printf("Sublist pos_list items:\n");
+    for (i = 0, curr = pos_list->next; (curr != NULL); curr = curr->next) {
+        
+        for (i = 0, future = A->next; (curr != NULL); future = future->next) {
+            if(i == curr->data)
+            {
+                if(sub_head->data==NULL)
+                    sub_head->data = curr->data;
+                
+                else if (sub_second->data == NULL)
+                    sub_second->data = curr->data;
+                
+                else if (sub_third->data == NULL)
+                    sub_third->data = curr->data;
+                
+                else if (sub_fourth->data == NULL)
+                    sub_fourth->data = curr->data;
+            }
+            
+            
+            i++;
+        }
+        printf("item %d: %d\n", i, curr->data);
+        i++;
+    }
+    
+    
     return NULL;
 }
 
@@ -154,31 +208,56 @@ void printList(struct node* n)
 
 int main(int argc, const char * argv[]) {
     struct node* dummy = NULL;
-    struct node* before = NULL;
     struct node* head = NULL;
     struct node* second = NULL;
     struct node* third = NULL;
     struct node* fourth = NULL;
+    struct node* fifth = NULL;
+    struct node* sixth = NULL;
+    struct node* seventh = NULL;
     
-    
+    //Array A
     dummy = new_list();
-    //before = new_node(9, NULL);
-    head = new_node(1, NULL);
-    second = new_node(2, NULL);
-    third = new_node(3, NULL);
-    fourth = new_node(4, NULL);
-    
+    head = new_node(15, NULL);
+    second = new_node(100, NULL);
+    third = new_node(7, NULL);
+    fourth = new_node(5, NULL);
+    fifth = new_node(100, NULL);
+    sixth = new_node(7, NULL);
+    seventh = new_node(30, NULL);
    
     insert_node(dummy, head);
-    //insert_node(head, before);
     insert_node(head, second);
     insert_node(second, third);
     insert_node(third, fourth);
+    insert_node(fourth, fifth);
+    insert_node(fifth, sixth);
+    insert_node(sixth, seventh);
+    
+    //Pos_List
+    struct node* pos_dummy = NULL;
+    struct node* pos_head = NULL;
+    struct node* pos_second = NULL;
+    struct node* pos_third = NULL;
+    struct node* pos_fourth = NULL;
+    
+    pos_dummy = new_list();
+    pos_head = new_node(3, NULL);
+    pos_second = new_node(0, NULL);
+    pos_third = new_node(6, NULL);
+    pos_fourth = new_node(4, NULL);
     
     
+    insert_node(pos_dummy, pos_head);
+    insert_node(pos_head, pos_second);
+    insert_node(pos_second, pos_third);
+    insert_node(pos_third, pos_fourth);
+    
+    sublist(dummy, pos_dummy);
     
     printf("__Vertical Print__:\n");
     print_list_vert(dummy);
+    print_list_vert(pos_dummy);
     
   
     
