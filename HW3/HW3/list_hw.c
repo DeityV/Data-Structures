@@ -146,7 +146,7 @@ struct node * sublist(struct node * A, struct node * pos_list) {
     //print_list_vert(A);
     //print_list_vert(pos_list);
     
-    int i = 0, j=0, pos_size;
+    int i = 1, j=0, pos_size;
     struct node * curr;
     struct node* temp = A;
     struct node* next = temp->next;
@@ -156,30 +156,41 @@ struct node * sublist(struct node * A, struct node * pos_list) {
     struct node* pos_next = pos_temp->next;
     pos_temp = pos_next;
     
+    struct node* result = new_list();
+    struct node* result_next = result->next;
+    //result = result_next;
 
-    while(temp != NULL)
+    int flag;
+    
+    while(pos_temp != NULL)
     {
-        struct node* next = temp->next;
+        struct node* pos_next = pos_temp->next;
+        //result_next = result->next;
         
+        //printf(" %d \n", pos_temp->data);
         
-        while(pos_temp != NULL)
+        flag = pos_temp->data;
+        
+        while(flag > 0)
         {
-            struct node* pos_next = pos_temp->next;
-            
-            printf(" %d \n", pos_temp->data);
-            
-            pos_temp = pos_next;
-            //pos_temp = pos_list;
-            //pos_next = pos_temp->next;
+            struct node* next = temp->next;
+            //printf(" %d \n", temp->data);
+            temp = next;
+            flag--;
         }
+        //result_next = next;  WRROONNNGGGG
+        result = temp;
+        //printf("temp->data: %d\n", temp->data);
+        printf("result->data: %d\n", result->data);
         
-        //printf(" %d \n", temp->data);
+        pos_temp = pos_next;
         
+        
+        temp = A;
+        next = temp->next;
         temp = next;
-        pos_temp = pos_list;
-        pos_next = pos_temp->next;
     }
-    return NULL;
+    return result;
 }
 
 /*
@@ -261,14 +272,17 @@ int main(int argc, const char * argv[]) {
     insert_node(pos_second, pos_third);
     insert_node(pos_third, pos_fourth);
     
-    sublist(dummy, pos_dummy);
     
-    //printf("__Vertical Print__:\n");
+    struct node* result = sublist(dummy, pos_dummy);
     
-    /*
-    print_list_vert(dummy);
-    print_list_vert(pos_dummy);
-    */
+    printf("__Vertical Print__:\n");
+    
+    
+    print_list_vert(result);
+    //print_list_vert(pos_dummy);
+    
+    
+    //printList(result);
   
     
     
