@@ -127,27 +127,13 @@ void print_list_pointer(struct node * my_list) {
  BUT YOU CAN ALSO CALL THEM AND USE THEM IN YOUR student_test_sublist function.
  */
 
-/*
- This function returns a list that contains the values that appear in list A at positions given in pos_list
- Requirement 1: the values should appear in the result in the order given by pos_list. For example if
- A: 15 -> 100 -> 7 -> 5 -> 100 -> 7 -> 30 and
- pos_list : 3 -> 0 -> 6 -> 4
- The resulting list will be A[3] -> A[0] -> A[6] -> A[4] , which gives values: 5 -> 15 -> 30 -> 100.
- Requirement 2: the result should be a deep copy, so that any future changes in list A cannot possibly affect the result, and any future changes in the result cannot possibly affect list A. (List A should remain as it was after building the sublist.)
- Requirement 3: DO not copy the nodes in an array and then build a list from an array. When found the node in A, make a new node with the same value and insert it in the result list.
- Requirement 4: DO not make a copy of a list and change the data there. Build the result list by starting with an empty list and then creating new nodes and inserting them at the end of it.
- The list pos_list CAN have repetitions. E.g.:
- list A: 10 -> 5
- pos_list: 0->0->1->-0->1->1->0.
- produces list: 10->10->5->10->5->5->10
- (This example also shows that the size of A is unrelated to the size of pos_list.)*/
+
 struct node * sublist(struct node * A, struct node * pos_list) {
     
     //print_list_vert(A);
     //print_list_vert(pos_list);
     
     int i = 1, j=0, pos_size;
-    struct node * curr;
     struct node* temp = A;
     struct node* next = temp->next;
     temp = next;
@@ -201,32 +187,53 @@ struct node * sublist(struct node * A, struct node * pos_list) {
         next = temp->next;
         temp = next;
     }
-    return dummy;
+    return result;
 }
 
-/*
- while(pos_list != NULL)
- {
- printf(" %d \n", pos_temp->data);
- 
- pos_temp->next;
- pos_temp = pos_next;
- 
- }
- */
 
 void swap_first_third(struct node * A) {
     return;
 }
 
+void delete_occurrences(struct node * A, int V) {
+    
+    struct node* temp = A;
+    
+    int i = 0;
+    
+    while(A != NULL)
+    {
 
-/*
+        
+        if(A->data == V && i == 0)
+        {
+            A = temp->next;
+            free(temp);
+            return;
+            
+        }
+        temp = temp->next;
+        if(A->data == V)
+        {
+            struct node* next = temp->next->next;
+            free(temp->next);
+            
+            temp->next = next;
+        }
+
+    }
+    
+    return;
+}
+
+
+
 // Tests the sublist function.
 int student_test_sublist() {
     printf("\n Running function student_test_sublist.\n ");
-    return;
+    return 0;
 }
-*/
+
 
 void printList(struct node* n)
 {
@@ -286,14 +293,14 @@ int main(int argc, const char * argv[]) {
     
     struct node* result = sublist(dummy, pos_dummy);
     
-    printf("__Vertical Print__:\n");
+   
     
     
     print_list_vert(result);
     //print_list_vert(pos_dummy);
     
     
-    printList(result);
+    
   
     
     
