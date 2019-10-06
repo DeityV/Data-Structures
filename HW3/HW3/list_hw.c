@@ -156,9 +156,14 @@ struct node * sublist(struct node * A, struct node * pos_list) {
     struct node* pos_next = pos_temp->next;
     pos_temp = pos_next;
     
-    struct node* result = new_list();
-    struct node* result_next = result->next;
+    struct node* dummy = new_list();
+    struct node* result;
+    struct node* result_next;
+    dummy->next = result;
+    result = new_node(0, result_next);
+    result_next = new_node(0, NULL);
     //result = result_next;
+    struct node* temp2 = new_list();
 
     int flag;
     
@@ -178,10 +183,16 @@ struct node * sublist(struct node * A, struct node * pos_list) {
             temp = next;
             flag--;
         }
-        //result_next = next;  WRROONNNGGGG
-        result = temp;
-        //printf("temp->data: %d\n", temp->data);
+        
+        result->data = temp->data;
         printf("result->data: %d\n", result->data);
+        result->next = temp2;
+        temp2->next = result_next;
+        result = temp2;
+        
+        //printf("temp->data: %d\n", temp->data);
+        
+        //result->next= result_next;
         
         pos_temp = pos_next;
         
@@ -190,7 +201,7 @@ struct node * sublist(struct node * A, struct node * pos_list) {
         next = temp->next;
         temp = next;
     }
-    return result;
+    return dummy;
 }
 
 /*
@@ -282,7 +293,7 @@ int main(int argc, const char * argv[]) {
     //print_list_vert(pos_dummy);
     
     
-    //printList(result);
+    printList(result);
   
     
     
