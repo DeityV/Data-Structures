@@ -142,48 +142,56 @@ void print_list_pointer(struct node * my_list) {
  produces list: 10->10->5->10->5->5->10
  (This example also shows that the size of A is unrelated to the size of pos_list.)*/
 struct node * sublist(struct node * A, struct node * pos_list) {
-    int i = 0;
+    
+    //print_list_vert(A);
+    //print_list_vert(pos_list);
+    
+    int i = 0, j=0, pos_size;
     struct node * curr;
-    struct node * future;
+    struct node* temp = A;
+    struct node* next = temp->next;
+    temp = next;
     
-    struct node* sub_dummy = NULL;
-    struct node* sub_head = NULL;
-    struct node* sub_second = NULL;
-    struct node* sub_third = NULL;
-    struct node* sub_fourth = NULL;
+    struct node* pos_temp = pos_list;
+    struct node* pos_next = pos_temp->next;
+    pos_temp = pos_next;
     
-    sub_dummy = new_list();
-    
-    
-    printf("Sublist pos_list items:\n");
-    for (i = 0, curr = pos_list->next; (curr != NULL); curr = curr->next) {
+
+    while(temp != NULL)
+    {
+        struct node* next = temp->next;
         
-        for (i = 0, future = A->next; (curr != NULL); future = future->next) {
-            if(i == curr->data)
-            {
-                if(sub_head->data==NULL)
-                    sub_head->data = curr->data;
-                
-                else if (sub_second->data == NULL)
-                    sub_second->data = curr->data;
-                
-                else if (sub_third->data == NULL)
-                    sub_third->data = curr->data;
-                
-                else if (sub_fourth->data == NULL)
-                    sub_fourth->data = curr->data;
-            }
+        
+        while(pos_temp != NULL)
+        {
+            struct node* pos_next = pos_temp->next;
             
+            printf(" %d \n", pos_temp->data);
             
-            i++;
+            pos_temp = pos_next;
+            //pos_temp = pos_list;
+            //pos_next = pos_temp->next;
         }
-        printf("item %d: %d\n", i, curr->data);
-        i++;
+        
+        //printf(" %d \n", temp->data);
+        
+        temp = next;
+        pos_temp = pos_list;
+        pos_next = pos_temp->next;
     }
-    
-    
     return NULL;
 }
+
+/*
+ while(pos_list != NULL)
+ {
+ printf(" %d \n", pos_temp->data);
+ 
+ pos_temp->next;
+ pos_temp = pos_next;
+ 
+ }
+ */
 
 void swap_first_third(struct node * A) {
     return;
@@ -255,10 +263,12 @@ int main(int argc, const char * argv[]) {
     
     sublist(dummy, pos_dummy);
     
-    printf("__Vertical Print__:\n");
+    //printf("__Vertical Print__:\n");
+    
+    /*
     print_list_vert(dummy);
     print_list_vert(pos_dummy);
-    
+    */
   
     
     
